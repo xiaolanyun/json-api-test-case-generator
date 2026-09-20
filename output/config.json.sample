@@ -1,0 +1,9 @@
+{
+  "validate_container_fields": true,
+  "default_normal_code": 200,
+  "default_error_code": 400,
+  "_comment_1": "validate_container_fields=true 表示 policyRules / criteriaConfig 这类容器字段也参与缺失/为空/类型错误校验。",
+  "_comment_2": "default_normal_code 为正常基准用例的预期状态码。",
+  "_comment_3": "default_error_code 为异常用例的统一预期状态码。",
+  "_comment_4": "执行 Postman / Apifox run 时，建议优先使用 CSV 中的 request_body 列作为最终请求体。"
+}

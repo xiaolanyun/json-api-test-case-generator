@@ -1,0 +1,14 @@
+﻿seq,raw_name,var_name,path,level,type,parent,is_container,sample_value
+1,rclass,rclass,rclass,1,string,ROOT,false,local
+2,repoLayoutRef,repoLayoutRef,repoLayoutRef,1,string,ROOT,false,maven-2-default
+3,packageType,packageType,packageType,1,string,ROOT,false,maven
+4,suppressPomConsistencyChecks,suppressPomConsistencyChecks,suppressPomConsistencyChecks,1,boolean,ROOT,false,true
+5,handleReleases,handleReleases,handleReleases,1,boolean,ROOT,false,true
+6,handleSnapshots,handleSnapshots,handleSnapshots,1,boolean,ROOT,false,true
+7,maxUniqueSnapshots,maxUniqueSnapshots,maxUniqueSnapshots,1,integer,ROOT,false,1
+8,projectKey,projectKey,projectKey,1,string,ROOT,false,
+9,key,key,key,1,string,ROOT,false,maven-duyi
+10,description,description,description,1,string,ROOT,false,Tapitest
+11,archiveBrowsingEnabled,archiveBrowsingEnabled,archiveBrowsingEnabled,1,boolean,ROOT,false,false
+12,includesPattern,includesPattern,includesPattern,1,string,ROOT,false,a/b
+13,excludesPattern,excludesPattern,excludesPattern,1,string,ROOT,false,

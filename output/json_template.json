@@ -1,0 +1,15 @@
+{
+  "rclass": "{{rclass}}",
+  "repoLayoutRef": "{{repoLayoutRef}}",
+  "packageType": "{{packageType}}",
+  "suppressPomConsistencyChecks": "{{suppressPomConsistencyChecks}}",
+  "handleReleases": "{{handleReleases}}",
+  "handleSnapshots": "{{handleSnapshots}}",
+  "maxUniqueSnapshots": "{{maxUniqueSnapshots}}",
+  "projectKey": "{{projectKey}}",
+  "key": "{{key}}",
+  "description": "{{description}}",
+  "archiveBrowsingEnabled": "{{archiveBrowsingEnabled}}",
+  "includesPattern": "{{includesPattern}}",
+  "excludesPattern": "{{excludesPattern}}"
+}

@@ -1,0 +1,119 @@
+{
+  "rclass": {
+    "raw_name": "rclass",
+    "path": "rclass",
+    "level": 1,
+    "type": "string",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": "local"
+  },
+  "repoLayoutRef": {
+    "raw_name": "repoLayoutRef",
+    "path": "repoLayoutRef",
+    "level": 1,
+    "type": "string",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": "maven-2-default"
+  },
+  "packageType": {
+    "raw_name": "packageType",
+    "path": "packageType",
+    "level": 1,
+    "type": "string",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": "maven"
+  },
+  "suppressPomConsistencyChecks": {
+    "raw_name": "suppressPomConsistencyChecks",
+    "path": "suppressPomConsistencyChecks",
+    "level": 1,
+    "type": "boolean",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": true
+  },
+  "handleReleases": {
+    "raw_name": "handleReleases",
+    "path": "handleReleases",
+    "level": 1,
+    "type": "boolean",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": true
+  },
+  "handleSnapshots": {
+    "raw_name": "handleSnapshots",
+    "path": "handleSnapshots",
+    "level": 1,
+    "type": "boolean",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": true
+  },
+  "maxUniqueSnapshots": {
+    "raw_name": "maxUniqueSnapshots",
+    "path": "maxUniqueSnapshots",
+    "level": 1,
+    "type": "integer",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": 1
+  },
+  "projectKey": {
+    "raw_name": "projectKey",
+    "path": "projectKey",
+    "level": 1,
+    "type": "string",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": ""
+  },
+  "key": {
+    "raw_name": "key",
+    "path": "key",
+    "level": 1,
+    "type": "string",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": "maven-duyi"
+  },
+  "description": {
+    "raw_name": "description",
+    "path": "description",
+    "level": 1,
+    "type": "string",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": "Tapitest"
+  },
+  "archiveBrowsingEnabled": {
+    "raw_name": "archiveBrowsingEnabled",
+    "path": "archiveBrowsingEnabled",
+    "level": 1,
+    "type": "boolean",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": false
+  },
+  "includesPattern": {
+    "raw_name": "includesPattern",
+    "path": "includesPattern",
+    "level": 1,
+    "type": "string",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": "a/b"
+  },
+  "excludesPattern": {
+    "raw_name": "excludesPattern",
+    "path": "excludesPattern",
+    "level": 1,
+    "type": "string",
+    "parent": "ROOT",
+    "is_container": false,
+    "sample_value": ""
+  }
+}

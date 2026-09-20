@@ -1,0 +1,4 @@
+{
+  "required_fields": ["rclass","key"],
+  "_comment": "请填写必填字段变量名，变量名请参考 fields_report.csv 中的 var_name 列。若字段重名，请使用 name1/name2 这类变量名。"
+}

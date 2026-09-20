@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON 接口测试数据生成器</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">LOCAL TEST DATA TOOL</p>
+      <h1>JSON 接口测试数据生成器</h1>
+    </div>
+    <p class="scope-note">只生成测试数据，不发送真实接口请求</p>
+  </header>
+
+  <main class="shell">
+    <ol class="steps" aria-label="操作步骤">
+      <li class="active"><span>1</span>输入样例</li>
+      <li><span>2</span>配置字段</li>
+      <li><span>3</span>生成与下载</li>
+    </ol>
+
+    <section class="card input-card" aria-labelledby="input-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">STEP 1</p>
+          <h2 id="input-title">输入 JSON 请求体样例</h2>
+        </div>
+        <label class="file-button">上传 .json 文件<input id="file-input" type="file" accept="application/json,.json"></label>
+      </div>
+      <textarea id="json-input" spellcheck="false" aria-label="JSON 请求体样例" placeholder='例如：{&#10;  "name": "demo",&#10;  "enabled": true&#10;}'></textarea>
+      <div class="action-row">
+        <button id="format-button" class="secondary" type="button">格式化</button>
+        <button id="clear-button" class="ghost" type="button">清空</button>
+        <span class="tip">支持对象、数组对象、基本类型数组和空数组；最大 1 MB。</span>
+        <button id="analyze-button" class="primary" type="button">分析字段</button>
+      </div>
+      <div id="input-message" class="message" role="status" aria-live="polite"></div>
+    </section>
+
+    <section id="config-section" class="card hidden" aria-labelledby="config-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">STEP 2</p>
+          <h2 id="config-title">配置必填字段与生成规则</h2>
+          <p id="analysis-summary" class="muted"></p>
+        </div>
+        <div class="count-box"><span>已选必填字段</span><strong id="selected-count">0</strong></div>
+      </div>
+
+      <div class="config-grid">
+        <label>正常用例预期状态码<input id="normal-code" type="number" min="100" max="599" value="200"></label>
+        <label>异常用例预期状态码<input id="error-code" type="number" min="100" max="599" value="400"></label>
+        <label class="switch-row"><input id="container-switch" type="checkbox" checked><span>校验容器字段</span><small>对象、数组也会生成异常用例</small></label>
+      </div>
+
+      <div class="toolbar">
+        <label class="search"><span>⌕</span><input id="field-search" type="search" placeholder="按变量名、原字段名或路径搜索"></label>
+        <button id="select-visible-button" class="secondary" type="button">全选可见字段</button>
+        <button id="select-leaves-button" class="secondary" type="button">仅选叶子字段</button>
+        <button id="clear-selection-button" class="ghost" type="button">清空选择</button>
+      </div>
+
+      <details class="field-tree">
+        <summary>查看字段层级树（用于理解嵌套关系）</summary>
+        <div id="field-tree-content"></div>
+      </details>
+
+      <div class="table-wrap">
+        <table id="field-table">
+          <thead><tr><th>必填</th><th>变量名</th><th>原字段名</th><th>完整路径</th><th>类型</th><th>父字段</th><th>容器</th><th>样例值</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="action-row config-actions">
+        <p id="estimate" class="tip"></p>
+        <button id="generate-button" class="primary" type="button">生成测试用例</button>
+      </div>
+      <div id="config-message" class="message" role="status" aria-live="polite"></div>
+    </section>
+
+    <section id="result-section" class="card hidden" aria-labelledby="result-title">
+      <div class="section-heading result-heading">
+        <div>
+          <p class="eyebrow">STEP 3</p>
+          <h2 id="result-title">生成结果</h2>
+          <p class="muted">预览最多展示前 100 行。CSV 内的 <code>request_body</code> 可直接作为 Postman/Apifox 的请求体数据源。</p>
+        </div>
+        <div class="download-actions">
+          <button class="secondary download-button" data-file="case_required_missing.csv" type="button">下载缺失 CSV</button>
+          <button class="secondary download-button" data-file="case_required_empty.csv" type="button">下载为空 CSV</button>
+          <button class="secondary download-button" data-file="case_required_type.csv" type="button">下载类型错误 CSV</button>
+          <button class="secondary download-button" data-file="case_all.csv" type="button">下载汇总 CSV</button>
+          <button class="primary download-button" data-file="all_cases.zip" type="button">下载全部 ZIP</button>
+        </div>
+      </div>
+      <div id="result-summary" class="summary-grid"></div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="all" type="button">全部用例</button>
+        <button class="tab" data-tab="missing" type="button">字段缺失</button>
+        <button class="tab" data-tab="empty" type="button">内容为空</button>
+        <button class="tab" data-tab="type" type="button">类型错误</button>
+      </div>
+      <div class="table-wrap preview-wrap"><table id="preview-table"><thead></thead><tbody></tbody></table></div>
+    </section>
+  </main>
+
+  <dialog id="body-dialog">
+    <div class="dialog-head">
+      <h2>最终 request_body</h2>
+      <div class="dialog-actions">
+        <span id="copy-body-status" class="copy-status" role="status" aria-live="polite"></span>
+        <button id="copy-body-button" class="secondary" type="button">一键复制</button>
+        <button id="close-dialog" class="ghost" type="button">关闭</button>
+      </div>
+    </div>
+    <pre id="body-content"></pre>
+  </dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

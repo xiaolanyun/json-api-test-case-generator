@@ -1,0 +1,74 @@
+JSON 字段校验测试用例生成工具使用说明
+
+一、初始化分析 JSON
+
+执行命令：
+python json_case_generator.py init --input input.json --outdir output
+
+会生成以下文件：
+1. fields_report.csv
+2. json_template.json
+3. field_meta.json
+4. required_fields.json.sample
+5. config.json.sample
+6. required_fields_guide.txt
+7. USAGE.txt
+
+二、填写必填字段
+
+请将以下示例文件复制并重命名：
+1. required_fields.json.sample 复制为 required_fields.json
+2. config.json.sample 复制为 config.json
+
+然后根据 fields_report.csv 和 required_fields_guide.txt 填写内容。
+
+三、生成 CSV 测试用例
+
+执行命令：
+python json_case_generator.py generate --input input.json --outdir output --required output/required_fields.json --config output/config.json
+
+会生成以下文件：
+1. case_required_missing.csv
+2. case_required_empty.csv
+3. case_required_type.csv
+4. case_all.csv
+
+四、CSV 文件说明
+
+生成的 CSV 中包含以下重要列：
+1. req_name
+2. 各字段变量列
+3. expected_code
+4. test_purpose
+5. case_type
+6. request_body
+
+建议：
+在 Postman 或 Apifox 执行 run 时，优先使用 request_body 列作为最终请求体。
+
+原因：
+1. DELETE_ME 表示删除字段
+2. EMPTY_OBJ 表示 {}
+3. EMPTY_ARR 表示 []
+4. 容器字段缺失、为空、类型错误等场景，无法只靠简单变量替换表达
+
+五、case_type 含义
+
+1. positive：正常基准用例
+2. required_missing：必填字段缺失
+3. required_empty：必填字段为空
+4. type_error：字段类型错误
+
+六、特殊占位符说明
+
+1. DELETE_ME：删除该字段
+2. EMPTY_OBJ：该字段内容置为 {}
+3. EMPTY_ARR：该字段内容置为 []
+4. N/A：由于父字段缺失或置空，该子字段不适用
+5. TYPE_ERROR：用于标识字段类型错误场景，实际 request_body 会写入错误类型值
+
+七、适用场景
+
+该工具生成的 CSV 测试数据主要用于：
+1. Postman Collection Runner
+2. Apifox Run 数据集

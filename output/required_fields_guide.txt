@@ -1,0 +1,39 @@
+# 必填字段填写说明
+
+请在 required_fields.json 中填写 required_fields 数组。
+填写内容必须是字段变量名 var_name，不是原始字段名 raw_name，也不是路径 path。
+
+## 重要说明
+1. 如果字段名没有重复，通常变量名就是字段名本身，例如：type、priority。
+2. 如果字段名重复出现，变量名会自动编号，例如：name1、name2。
+3. 容器字段（如 object / array<object>）也可以填写为必填，例如：policyRules、criteriaConfig。
+4. 若 validate_container_fields=true，则容器字段也会生成 缺失/为空/类型错误 用例。
+
+## 当前可填写字段
+
+- rclass    (raw_name=rclass, path=rclass, type=string)
+- repoLayoutRef    (raw_name=repoLayoutRef, path=repoLayoutRef, type=string)
+- packageType    (raw_name=packageType, path=packageType, type=string)
+- suppressPomConsistencyChecks    (raw_name=suppressPomConsistencyChecks, path=suppressPomConsistencyChecks, type=boolean)
+- handleReleases    (raw_name=handleReleases, path=handleReleases, type=boolean)
+- handleSnapshots    (raw_name=handleSnapshots, path=handleSnapshots, type=boolean)
+- maxUniqueSnapshots    (raw_name=maxUniqueSnapshots, path=maxUniqueSnapshots, type=integer)
+- projectKey    (raw_name=projectKey, path=projectKey, type=string)
+- key    (raw_name=key, path=key, type=string)
+- description    (raw_name=description, path=description, type=string)
+- archiveBrowsingEnabled    (raw_name=archiveBrowsingEnabled, path=archiveBrowsingEnabled, type=boolean)
+- includesPattern    (raw_name=includesPattern, path=includesPattern, type=string)
+- excludesPattern    (raw_name=excludesPattern, path=excludesPattern, type=string)
+
+## required_fields.json 示例
+
+{
+  "required_fields": [
+    "type",
+    "name1",
+    "policyRules",
+    "name2",
+    "criteriaConfig",
+    "criteriaType"
+  ]
+}
